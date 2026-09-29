@@ -639,26 +639,6 @@
   select(start);
   setLayer("dossier");
 
-  const riskButtons = Array.from(document.querySelectorAll(".risk"));
-  const answerItems = Array.from(document.querySelectorAll("#answers li"));
-
-  function pickRisk(btn) {
-    const links = btn.dataset.links.split(" ");
-    riskButtons.forEach(function (b) {
-      b.setAttribute("aria-pressed", b === btn ? "true" : "false");
-    });
-    answerItems.forEach(function (a) {
-      a.classList.toggle("is-linked", links.indexOf(a.dataset.id) !== -1);
-    });
-  }
-
-  riskButtons.forEach(function (b) {
-    b.addEventListener("click", function () {
-      pickRisk(b);
-    });
-  });
-  pickRisk(riskButtons[0]);
-
   const WHO = {
     gov: {
       line: "Faster policy analysis and simulation.",
