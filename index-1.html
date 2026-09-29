@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bhumi-Netra | Land Governance Intelligence Platform</title>
+<meta name="description" content="Bhumi-Netra joins land records, legal history, satellite imagery and policy models into one view of every parcel. A Smart India Hackathon 2025 idea by team Code Climbers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="#top" aria-label="Bhumi-Netra home">
+      <svg class="brand-mark" viewBox="0 0 48 32" aria-hidden="true">
+        <path d="M2 16C9 5 17 1 24 1s15 4 22 15c-7 11-15 15-22 15S9 27 2 16Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
+        <path d="M16 9l7-2 8 3 1 8-6 6-8-1-3-7Z" fill="#F0A81C" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <circle cx="24" cy="16" r="3.2" fill="currentColor"/>
+      </svg>
+      <span class="brand-name">Bhumi-Netra</span>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main">
+      <a href="#engines">Engines</a>
+      <a href="#approach">Approach</a>
+      <a href="#feasibility">Feasibility</a>
+      <a href="#impact">Impact</a>
+      <a href="#references">References</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>See every parcel of land clearly before anyone decides.</h1>
+        <p class="lead">Bhumi-Netra brings land records, legal history, satellite imagery and policy models into one view of each parcel.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="#engines">See the five engines</a>
+          <a class="btn btn-line" href="#approach">Read the approach</a>
+        </div>
+        <p class="hero-note">Bhumi means land. Netra means eye. This is a Smart India Hackathon 2025 idea by team Code Climbers, in the software category.</p>
+      </div>
+
+      <div class="hero-map" id="map">
+        <div class="tabs" id="layer-tabs" role="tablist" aria-label="Map layers">
+          <button type="button" role="tab" id="tab-dossier" data-layer="dossier" aria-selected="true" aria-controls="map-panel">Dossier</button>
+          <button type="button" role="tab" id="tab-legal" data-layer="legal" aria-selected="false" aria-controls="map-panel" tabindex="-1">Legal</button>
+          <button type="button" role="tab" id="tab-geo" data-layer="geo" aria-selected="false" aria-controls="map-panel" tabindex="-1">Geospatial</button>
+          <button type="button" role="tab" id="tab-policy" data-layer="policy" aria-selected="false" aria-controls="map-panel" tabindex="-1">Policy</button>
+          <button type="button" role="tab" id="tab-sandbox" data-layer="sandbox" aria-selected="false" aria-controls="map-panel" tabindex="-1">Sandbox</button>
+        </div>
+        <div class="sheet" id="map-panel" role="tabpanel" aria-labelledby="tab-dossier">
+          <svg id="parcel-map" viewBox="0 0 720 520" tabindex="0" role="group" aria-label="Sample parcel map. Use the arrow keys to move between parcels."></svg>
+          <ul class="legend" id="legend"></ul>
+          <div class="policy-control" id="policy-control" hidden>
+            <div class="setback-row">
+              <label for="setback">River setback rule</label>
+              <output id="setback-out" for="setback">80 m</output>
+            </div>
+            <input type="range" id="setback" min="0" max="250" step="10" value="80">
+            <div class="meters" id="policy-meters"></div>
+            <p class="verdict" id="policy-verdict" aria-live="polite"></p>
+          </div>
+          <div class="readout">
+            <div class="engine" id="engine-info"></div>
+            <div class="parcel-info" id="parcel-info" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="sample-note">Sample area with illustrative data. Select any parcel on the map.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="engines">
+    <div class="container">
+      <h2>Five engines, one parcel record</h2>
+      <p class="intro">Land, legal, GIS and research data sit in different places today. Bhumi-Netra unifies them, automates detection and analysis, tests policy impact before it is implemented, and turns records into decisions.</p>
+
+      <table class="register">
+        <caption class="visually-hidden">The five engines of Bhumi-Netra</caption>
+        <thead>
+          <tr>
+            <th scope="col">Step</th>
+            <th scope="col">Engine</th>
+            <th scope="col">What it does</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="verb">Connect</th>
+            <td>
+              <strong>Bhumi-Dossier</strong>
+              <span>Parcel 360° identity</span>
+            </td>
+            <td>
+              <ul>
+                <li>Ownership history</li>
+                <li>Boundaries and land use</li>
+                <li>Encumbrances and litigation</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="verb">Understand</th>
+            <td>
+              <strong>Legal intelligence</strong>
+              <span>AI, RAG and a knowledge graph</span>
+            </td>
+            <td>
+              <ul>
+                <li>Precedent discovery</li>
+                <li>Conflict detection</li>
+                <li>Judgment summaries, in several languages</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="verb">Detect</th>
+            <td>
+              <strong>Geospatial intelligence</strong>
+              <span>GIS, satellite and computer vision</span>
+            </td>
+            <td>
+              <ul>
+                <li>Encroachment detection</li>
+                <li>Land-use change</li>
+                <li>Deforestation and hazard mapping</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="verb">Simulate</th>
+            <td>
+              <strong>Policy simulation</strong>
+              <span>A digital policy sandbox</span>
+            </td>
+            <td>
+              <ul>
+                <li>Feasibility scoring</li>
+                <li>Economic and environmental impact</li>
+                <li>Social risk and prediction</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row" class="verb">Innovate</th>
+            <td>
+              <strong>Innovation sandbox</strong>
+              <span>Research and startup ecosystem</span>
+            </td>
+            <td>
+              <ul>
+                <li>Challenges and hackathons</li>
+                <li>Synthetic data and validation</li>
+                <li>Milestone-based grants</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="subhead">What makes it different</h3>
+      <dl class="difference">
+        <div>
+          <dt>Parcel-level</dt>
+          <dd>A 360° digital identity for every parcel.</dd>
+        </div>
+        <div>
+          <dt>AI legal</dt>
+          <dd>RAG and a knowledge graph over legal records.</dd>
+        </div>
+        <div>
+          <dt>Autonomous GIS</dt>
+          <dd>Continuous change detection from satellite data.</dd>
+        </div>
+        <div>
+          <dt>Policy-first</dt>
+          <dd>Test a policy before you implement it.</dd>
+        </div>
+        <div>
+          <dt>Research to deploy</dt>
+          <dd>A secure pipeline from idea to use.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="approach">
+    <div class="container">
+      <h2>From land data to evidence-based decisions</h2>
+      <p class="intro">Data moves up through five layers, like ground rising to the surface. Each layer only asks for what the one below it has already cleaned and connected.</p>
+
+      <div class="approach-grid">
+        <ol class="strata" aria-label="Five layers, from data sources at the bottom to actionable output at the top">
+          <li style="--i:1">
+            <span class="stage">1</span>
+            <h3>Data sources</h3>
+            <p>Land records, cadastral and GIS data, satellite imagery, legal, climate and socio-economic data.</p>
+          </li>
+          <li style="--i:2">
+            <span class="stage">2</span>
+            <h3>Unified land layer</h3>
+            <p>Bhumi-Dossier, APIs and ETL on PostgreSQL with PostGIS.</p>
+          </li>
+          <li style="--i:3">
+            <span class="stage">3</span>
+            <h3>AI intelligence</h3>
+            <p>RAG and NLP, a legal knowledge graph, computer vision and machine learning.</p>
+          </li>
+          <li style="--i:4">
+            <span class="stage">4</span>
+            <h3>Policy simulation</h3>
+            <p>Feasibility and risk, plus economic, environmental and social impact.</p>
+          </li>
+          <li style="--i:5">
+            <span class="stage">5</span>
+            <h3>Actionable output</h3>
+            <p>Alerts, risk and feasibility scores, policy insights and research intelligence.</p>
+          </li>
+        </ol>
+
+        <aside class="stack" aria-labelledby="stack-title">
+          <h3 id="stack-title">Core technology stack</h3>
+          <dl>
+            <div><dt>Frontend</dt><dd>React</dd></div>
+            <div><dt>Backend</dt><dd>FastAPI</dd></div>
+            <div><dt>AI and ML</dt><dd>PyTorch</dd></div>
+            <div><dt>Database and GIS</dt><dd>PostgreSQL with PostGIS</dd></div>
+            <div><dt>Maps and geo-UI</dt><dd>Mapbox GL JS</dd></div>
+            <div><dt>Deployment</dt><dd>Docker</dd></div>
+          </dl>
+          <p class="stack-users">Used by government, researchers, startups and the public.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="feasibility">
+    <div class="container">
+      <h2>Built for pilots first, then scale</h2>
+      <p class="intro">Bhumi-Netra is designed for pilot validation, secure adoption and scale-up.</p>
+
+      <div class="feas-grid">
+        <div class="feas-list">
+          <h3>Why it is feasible</h3>
+          <dl>
+            <div>
+              <dt>Modular and scalable</dt>
+              <dd>Five modules are developed independently, then integrated.</dd>
+            </div>
+            <div>
+              <dt>Data-ready</dt>
+              <dd>Uses existing land, GIS, satellite and legal datasets.</dd>
+            </div>
+            <div>
+              <dt>Proven tech</dt>
+              <dd>AI and ML, RAG, GIS, remote sensing and cloud.</dd>
+            </div>
+            <div>
+              <dt>Pilot to scale</dt>
+              <dd>A district or state pilot, then validation, then national rollout.</dd>
+            </div>
+            <div>
+              <dt>Human-in-the-loop</dt>
+              <dd>Officials validate critical AI-assisted decisions.</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="risk-board">
+          <h3>Risks and the safeguards that answer them</h3>
+          <p class="risk-hint">Choose a risk to see which safeguards answer it.</p>
+          <div class="risk-columns">
+            <ul class="risks" id="risks">
+              <li>
+                <button type="button" class="risk" data-links="standard api" aria-pressed="true">
+                  <strong>Data fragmentation</strong>
+                  <span>Different formats, standards and update cycles.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="risk" data-links="standard human" aria-pressed="false">
+                  <strong>Data quality</strong>
+                  <span>Incomplete or outdated records can affect outputs.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="risk" data-links="secure" aria-pressed="false">
+                  <strong>Privacy and security</strong>
+                  <span>Sensitive ownership, financial and litigation data.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="risk" data-links="confidence human" aria-pressed="false">
+                  <strong>AI accuracy</strong>
+                  <span>False positives and negatives in detection and legal AI.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="risk" data-links="api" aria-pressed="false">
+                  <strong>Interoperability</strong>
+                  <span>Legacy systems and multiple government platforms.</span>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="risk" data-links="pilot" aria-pressed="false">
+                  <strong>Adoption</strong>
+                  <span>Training and workflow integration required.</span>
+                </button>
+              </li>
+            </ul>
+            <ul class="answers" id="answers">
+              <li data-id="standard">
+                <strong>Standardized data</strong>
+                <span>Common schemas, validation and provenance.</span>
+              </li>
+              <li data-id="secure">
+                <strong>Secure architecture</strong>
+                <span>RBAC, encryption, audit logs and controlled APIs.</span>
+              </li>
+              <li data-id="human">
+                <strong>Human validation</strong>
+                <span>Critical AI alerts are reviewed before action.</span>
+              </li>
+              <li data-id="confidence">
+                <strong>Confidence-aware AI</strong>
+                <span>Confidence scores and source evidence.</span>
+              </li>
+              <li data-id="pilot">
+                <strong>Pilot, validate, scale</strong>
+                <span>Historical and limited data testing before deployment.</span>
+              </li>
+              <li data-id="api">
+                <strong>API-first</strong>
+                <span>Connect existing systems without replacing them.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="impact">
+    <div class="container">
+      <h2>One platform, five kinds of users</h2>
+      <p class="intro">Choose who you are to see what Bhumi-Netra gives you and which engines you would use.</p>
+
+      <div class="who-grid">
+        <div class="who-tabs" id="who-tabs" role="tablist" aria-label="Stakeholders" aria-orientation="vertical">
+          <button type="button" role="tab" id="who-gov" data-who="gov" aria-selected="true" aria-controls="who-panel">Government</button>
+          <button type="button" role="tab" id="who-auth" data-who="auth" aria-selected="false" aria-controls="who-panel" tabindex="-1">Land authorities</button>
+          <button type="button" role="tab" id="who-res" data-who="res" aria-selected="false" aria-controls="who-panel" tabindex="-1">Researchers</button>
+          <button type="button" role="tab" id="who-cit" data-who="cit" aria-selected="false" aria-controls="who-panel" tabindex="-1">Citizens</button>
+          <button type="button" role="tab" id="who-start" data-who="start" aria-selected="false" aria-controls="who-panel" tabindex="-1">Startups</button>
+        </div>
+        <div class="who-panel" id="who-panel" role="tabpanel" aria-labelledby="who-gov">
+          <p class="who-line" id="who-line"></p>
+          <p class="who-uses-label">Engines you would use</p>
+          <ul class="who-uses" id="who-uses"></ul>
+        </div>
+      </div>
+
+      <h3 class="subhead">What changes</h3>
+      <div class="benefits">
+        <section class="benefit b-social">
+          <h4>Social</h4>
+          <ul>
+            <li>Transparency in land records</li>
+            <li>Faster dispute and encroachment intelligence</li>
+            <li>More equitable land governance</li>
+          </ul>
+        </section>
+        <section class="benefit b-economic">
+          <h4>Economic</h4>
+          <ul>
+            <li>Lower land-verification time and cost</li>
+            <li>Better infrastructure-investment decisions</li>
+            <li>Reduced transaction-related losses</li>
+          </ul>
+        </section>
+        <section class="benefit b-environment">
+          <h4>Environmental</h4>
+          <ul>
+            <li>Deforestation and land-use alerts</li>
+            <li>Climate and disaster vulnerability mapping</li>
+            <li>Sustainable zoning decisions</li>
+          </ul>
+        </section>
+        <section class="benefit b-governance">
+          <h4>Governance and research</h4>
+          <ul>
+            <li>Evidence-based policy and impact assessment</li>
+            <li>A national land knowledge ecosystem</li>
+            <li>Faster research and government collaboration</li>
+          </ul>
+        </section>
+      </div>
+
+      <p class="chain">Land data, then AI insights, then better policy, then smarter land governance.</p>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="references">
+    <div class="container">
+      <h2>Research and references</h2>
+      <p class="intro">These are the primary references from the team's Smart India Hackathon presentation.</p>
+      <ol class="refs">
+        <li>
+          <strong>Department of Land Resources, Government of India</strong>
+          <span>Land-record digitisation, integration, transparency and dispute reduction.</span>
+        </li>
+        <li>
+          <span>The current national framework for the next phase of digital land-record modernization.</span>
+        </li>
+        <li>
+          <strong>NCAER study on the evaluation of the quality of land records (2025)</strong>
+          <span>Research on the quality of digitised land records and the challenge of reflecting ground realities.</span>
+        </li>
+        <li>
+          <strong>NCAER Land Records and Services Index (N-LRSI)</strong>
+          <span>Evidence-based assessment of land-record digitisation, quality and accessibility across Indian States and UTs.</span>
+        </li>
+        <li>
+          <strong>ISRO and NRSC Bhuvan Geoportal</strong>
+          <span>Reference for satellite imagery, GIS layers, thematic mapping, disaster management and geospatial applications.</span>
+        </li>
+        <li>
+          <strong>NCAER on Records of Rights as title registers</strong>
+          <span>Research on ownership, possession, land area, land use and encumbrance information relevant to a unified parcel ledger.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <p class="footer-brand">Bhumi-Netra</p>
+    <p>Land Governance Intelligence Platform. Smart India Hackathon 2025 idea by team Code Climbers, software category.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
